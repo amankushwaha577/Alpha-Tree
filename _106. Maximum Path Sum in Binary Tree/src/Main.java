@@ -1,6 +1,10 @@
+
 public class Main {
 
-    // 🌿 Node class representing each element in the binary tree
+    // 🌐 Global variable to store the result
+    static int maxSum = Integer.MIN_VALUE;
+
+    // 🌿 Node structure
     static class Node {
         int data;
         Node left, right;
@@ -12,44 +16,32 @@ public class Main {
         }
     }
 
-    // 🌟 Class to hold the result (global max)
-    static class MaxPathSum {
-        int max = Integer.MIN_VALUE;
-    }
-
-    // 🔍 Function to compute max path sum from a given root
-    public static int findMaxPath(Node root, MaxPathSum result) {
+    // 🧮 Recursive function to calculate max path sum
+    public static int findMaxPath(Node root) {
         if (root == null) return 0;
 
-        // 🔽 Recursively find max path sum on left and right subtrees
-        int left = Math.max(0, findMaxPath(root.left, result));  // Ignore negative paths
-        int right = Math.max(0, findMaxPath(root.right, result));
+        // ⬅️ Max path from left child (ignore negative paths)
+        int leftSum = Math.max(0, findMaxPath(root.left));
 
-        // 🌈 Calculate the current path passing through this node
-        int currentPath = left + right + root.data;
+        // ➡️ Max path from right child
+        int rightSum = Math.max(0, findMaxPath(root.right));
 
-        // 💾 Update global max if current path is greater
-        result.max = Math.max(result.max, currentPath);
+        // 🔄 Path that passes through this node
+        int currentPathSum = leftSum + rightSum + root.data;
 
-        // ↩️ Return max sum of path including one child + current node
-        return Math.max(left, right) + root.data;
+        // 🔼 Update global max if needed
+        maxSum = Math.max(maxSum, currentPathSum);
+
+        // ↩️ Return the best one-sided path to parent
+        return Math.max(leftSum, rightSum) + root.data;
     }
 
-    // 🧮 Driver function to return max path sum
     public static int maxPathSum(Node root) {
-        MaxPathSum result = new MaxPathSum();
-        findMaxPath(root, result);
-        return result.max;
+        findMaxPath(root);
+        return maxSum;
     }
 
-    // 🧪 Example usage
     public static void main(String[] args) {
-        /* Tree:
-                      🔵1
-                    /     \
-                 🔵2       🔵3
-                /    \         \
-            🔵4     🔵5       🔵6     */
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
@@ -57,9 +49,10 @@ public class Main {
         root.left.right = new Node(5);
         root.right.right = new Node(6);
 
-        System.out.println("Maximum Path Sum: " + maxPathSum(root));  // ➤ Output: 17
+        System.out.println("Maximum Path Sum: " + maxPathSum(root)); // Output: 17
     }
 }
+
 
 
 /*
