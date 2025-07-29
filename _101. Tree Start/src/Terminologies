@@ -1,0 +1,272 @@
+/*
+==============================
+📚 TREE TERMINOLOGIES with EXAMPLES
+==============================
+
+🔹 1. Tree
+A hierarchical structure made of nodes.
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+
+------------------------------
+
+🔹 2. Node
+Each element of the tree. Contains data and links to children.
+
+In the above tree, 🔵1, 🔵2, 🔵3 are nodes.
+
+------------------------------
+
+🔹 3. Root
+The topmost node in a tree.
+
+Example:
+         🔵1   ← root
+        /   \
+     🔵2     🔵3
+
+------------------------------
+
+🔹 4. Parent
+A node that has one or more children.
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+
+→ 🔵1 is the parent of 🔵2 and 🔵3
+
+------------------------------
+
+🔹 5. Child
+A node that descends from another node.
+
+→ 🔵2 and 🔵3 are children of 🔵1
+
+------------------------------
+
+🔹 6. Sibling
+Nodes with the same parent.
+
+→ 🔵2 and 🔵3 are siblings (same parent 🔵1)
+
+------------------------------
+
+🔹 7. Leaf Node
+A node with **no children**.
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+
+→ 🔵2 and 🔵3 are leaf nodes
+
+------------------------------
+
+🔹 8. Internal Node
+A node that has at least one child.
+
+→ 🔵1 is an internal node
+
+------------------------------
+
+🔹 9. Subtree
+Any node with its descendants is a subtree.
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+           /   \
+        🔵4     🔵5
+
+→ Subtree rooted at 🔵3 includes 🔵3, 🔵4, 🔵5
+
+------------------------------
+
+🔹 10. Edge
+A link between two nodes (parent to child).
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+
+→ 🔵1 → 🔵2 and 🔵1 → 🔵3 are 2 edges
+
+Total edges = nodes - 1
+
+------------------------------
+
+🔹 11. Depth
+Number of edges from the root to a node.
+
+Example:
+         🔵1     ← depth 0
+        /   \
+     🔵2     🔵3   ← depth 1
+    /
+ 🔵4           ← depth 2
+
+------------------------------
+
+🔹 12. Height
+Number of edges on longest path from node to leaf.
+
+Height of leaf = 0
+Height of root in full tree = 2 (in above)
+
+------------------------------
+
+🔹 13. Level
+Level = depth + 1
+
+Example:
+         🔵1     ← level 1
+        /   \
+     🔵2     🔵3   ← level 2
+    /
+ 🔵4           ← level 3
+
+------------------------------
+
+🔹 14. Degree
+Number of children a node has.
+
+Example:
+         🔵1
+        /   \
+     🔵2     🔵3
+
+→ degree(🔵1) = 2
+→ degree(🔵2) = 0
+
+------------------------------
+
+🔹 15. Binary Tree
+A tree where each node has ≤ 2 children.
+
+         🔵1
+        /   \
+     🔵2     🔵3
+
+------------------------------
+
+🔹 16. Binary Search Tree (BST)
+Left < Root < Right
+
+         🔵5
+        /   \
+     🔵3     🔵8
+    /  \    /  \
+ 🔵1  🔵4 🔵6  🔵9
+
+------------------------------
+
+🔹 17. Full Binary Tree
+Every node has 0 or 2 children.
+
+         🔵1
+        /   \
+     🔵2     🔵3
+    / \     / \
+ 🔵4 🔵5  🔵6 🔵7
+
+❌ Not full:
+         🔵1
+        /   \
+     🔵2     🔵3
+    /
+ 🔵4      ← 🔵2 has only one child
+
+------------------------------
+
+🔹 18. Complete Binary Tree
+All levels filled except last, filled left to right.
+
+         🔵1
+        /   \
+     🔵2     🔵3
+    /  \    /
+ 🔵4 🔵5 🔵6
+
+❌ Not complete:
+         🔵1
+        /   \
+     🔵2     🔵3
+              \
+              🔵6
+
+→ Skipped left child on last level
+
+------------------------------
+
+🔹 19. Perfect Binary Tree
+All internal nodes have 2 children, all leaves at same level.
+
+         🔵1
+        /   \
+     🔵2     🔵3
+    / \     / \
+ 🔵4 🔵5  🔵6 🔵7
+
+------------------------------
+
+🔹 20. Balanced Binary Tree
+For every node: height(left) - height(right) ≤ 1
+
+Example (Balanced):
+         🔵1
+        /   \
+     🔵2     🔵3
+    /          \
+ 🔵4           🔵5
+
+→ Height difference is ≤ 1 everywhere
+
+❌ Unbalanced:
+         🔵1
+        /
+     🔵2
+    /
+  🔵3
+
+→ Leaning, height difference = 2 → Not balanced
+
+------------------------------
+
+🔹 21. Degenerate Tree
+Each parent has only one child. Acts like linked list.
+
+Example (Left-skewed):
+         🔵1
+        /
+     🔵2
+    /
+  🔵3
+
+Example (Right-skewed):
+         🔵1
+            \
+            🔵2
+               \
+               🔵3
+
+→ Worst case for BSTs
+
+------------------------------
+
+🔹 22. Traversals
+How we visit nodes:
+
+- Inorder: Left → Root → Right
+- Preorder: Root → Left → Right
+- Postorder: Left → Right → Root
+- Level-order: Breadth-first (top to bottom, left to right)
+
+*/
