@@ -1,0 +1,56 @@
+/*
+==============================
+📘 BFS (Breadth-First Search) / Level Order Traversal
+==============================
+
+Definition:
+- Traverses the tree **level by level**, from **left to right**
+- Starts from the root and visits nodes level-wise
+- Uses a **Queue** to keep track of nodes to visit
+
+📘 Use Cases:
+- Shortest path in unweighted trees
+- Serialization of trees
+- Organizing tasks level by level (e.g., UI rendering, processes)
+
+==============================
+🌳 Example Tree:
+           🔵1
+          /   \
+       🔵2     🔵3
+      /   \      \
+   🔵4   🔵5     🔵6
+
+==============================
+🔢 BFS Output (Level Order):
+1 2 3 4 5 6
+
+==============================
+🧠 Step-by-step:
+1. Enqueue 🔵1
+2. Dequeue 1 → enqueue 🔵2 and 🔵3
+3. Dequeue 2 → enqueue 🔵4 and 🔵5
+4. Dequeue 3 → enqueue 🔵6
+5. Dequeue 4, 5, 6 → All are leaf nodes
+
+Queue status at each step:
+[1]
+→ [2, 3]
+→ [3, 4, 5]
+→ [4, 5, 6]
+→ [5, 6]
+→ [6]
+→ []
+
+==============================
+📌 BFS vs DFS:
+- BFS uses a **Queue**, DFS uses **Recursion or Stack**
+- BFS visits nodes level by level
+- DFS goes deep before backtracking
+
+==============================
+📌 Time & Space Complexity:
+- Time: O(n) (visits all nodes once)
+- Space: O(n) in the worst case (queue holds all nodes at the widest level)
+
+*/
