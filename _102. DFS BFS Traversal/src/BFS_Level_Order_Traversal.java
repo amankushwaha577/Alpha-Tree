@@ -19,43 +19,51 @@ public class BFS_Level_Order_Traversal {
 
         // 🏗️ Build tree from preorder array (-1 = null)
         public static Node buildTree(int[] nodes) {
-            idx++;
+            idx++; // Move to next element in the array
+
+            // If current value is -1, it means this node is null
             if (nodes[idx] == -1) return null;
 
+            // 🌱 Create a node with the current value
             Node newNode = new Node(nodes[idx]);
+
+            // Recursively build the left and right subtrees
             newNode.left = buildTree(nodes);
             newNode.right = buildTree(nodes);
 
-            return newNode;
+            return newNode; // Return constructed subtree to parent
         }
 
-        // 🌐 Level-order traversal (your version): line-by-line using null marker
+        // 🌐 Level-order traversal (line-by-line) using queue and null markers
         public static void levelOrder(Node root) {
-            Queue<Node> q = new LinkedList<>();
-            q.add(root);
-            q.add(null); // 🚧 End of level marker
+            Queue<Node> q = new LinkedList<>();  // Queue for BFS
+            q.add(root);                         // Add root node
+            q.add(null);                         // ⛔ Add null marker to mark the end of the current level
 
             while (!q.isEmpty()) {
-                Node currNode = q.remove();
+                Node currNode = q.remove();  // 🚶 Take the front node from queue
 
                 if (currNode == null) {
-                    // ✅ End of one level
-                    System.out.println();
+                    // ⚠️ End of one level reached
+                    System.out.println();  // Print newline to separate levels
+
                     if (q.isEmpty()) {
-                        break; // 🚪 Exit if nothing more
+                        // ✅ No more nodes left in queue — traversal complete
+                        break;
                     } else {
-                        q.add(null); // 🚧 Mark next level
+                        // 🟢 Add another null to mark the end of the next level
+                        q.add(null);
                     }
                 } else {
-                    // 🖨️ Print current node
+                    // 📌 Print the current node
                     System.out.print(currNode.data + " ");
 
-                    // 🔽 Add left child
+                    // 👶 Add left child if it exists
                     if (currNode.left != null) {
                         q.add(currNode.left);
                     }
 
-                    // 🔼 Add right child
+                    // 👶 Add right child if it exists
                     if (currNode.right != null) {
                         q.add(currNode.right);
                     }
@@ -65,7 +73,7 @@ public class BFS_Level_Order_Traversal {
     }
 
     public static void main(String[] args) {
-        // 🌱 Preorder array representing tree
+        // 🌱 Preorder array representing tree nodes (-1 is null)
         int[] preorder = {
                 1,
                 2,
@@ -75,17 +83,19 @@ public class BFS_Level_Order_Traversal {
                 6, -1, -1
         };
 
-        // 🛠️ Build the binary tree
+        // 🛠️ Step 1: Build the binary tree from array
         Node root = BinaryTree.buildTree(preorder);
 
-        // 🧪 Run level-order traversal (line-by-line)
+        // 🧪 Step 2: Print nodes level-by-level
         System.out.println("Level Order Traversal (line-by-line):");
         BinaryTree.levelOrder(root);
     }
 }
 
+
  /*
-        🔍 DRY RUN: Level Order Traversal with Queue
+🔍 Level by level traversal using Queue + null marker
+======================================================
 
         Preorder array used to build tree:
         ➝ {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1}
@@ -117,4 +127,8 @@ public class BFS_Level_Order_Traversal {
         1
         2 3
         4 5 6
+
+
+
+
         */
