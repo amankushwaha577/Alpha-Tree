@@ -1,4 +1,4 @@
-public class Main {
+public class Better {
 
     // 🌿 Node class
     static class Node {
