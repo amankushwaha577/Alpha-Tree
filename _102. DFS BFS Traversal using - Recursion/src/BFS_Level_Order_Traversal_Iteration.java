@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BFS_Level_Order_Traversal {
+public class BFS_Level_Order_Traversal_Iteration {
 
     // 🌿 Node class representing each tree element
     static class Node {
