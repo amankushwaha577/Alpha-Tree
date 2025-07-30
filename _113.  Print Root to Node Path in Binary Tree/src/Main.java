@@ -59,3 +59,22 @@ public class Main {
         }
     }
 }
+
+/*
+📌 GOAL:
+Find path from root to given node in binary tree.
+
+🛠️ ALGORITHM:
+1. Traverse tree recursively.
+2. At each node, add it to path.
+3. If node is the target → return true.
+4. Else recur for left and right.
+5. If neither returns true → backtrack (remove node from path).
+
+💡 Tip:
+Use backtracking — only keep the correct path.
+
+🕒 Time: O(N) → visit all nodes in worst case
+🧠 Space: O(H) → path list + recursion stack (H = height)
+
+ */
