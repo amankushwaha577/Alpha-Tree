@@ -2,75 +2,77 @@ import java.util.*;
 
 public class Main {
 
-    // 🌿 Node class
-    static class Node {
-        int data;
-        Node left, right;
-        Node(int data) {
-            this.data = data;
-        }
-    }
+    // 🔁 This function performs Vertical Order Traversal
+    public static List<Integer> verticalOrder(Node root) {
 
-    // 📦 Pair class to hold Node and its horizontal distance (HD)
-    static class Pair {
-        Node node;
-        int hd;
-        Pair(Node node, int hd) {
-            this.node = node;
-            this.hd = hd;
-        }
-    }
+        // 📌 If tree is empty, return empty list
+        if (root == null) return new ArrayList<>();
 
-    // 🌐 Function to perform vertical order traversal
-    public static void verticalOrder(Node root) {
-        if (root == null) return;
-
-        // 🔀 TreeMap to store nodes by horizontal distance (hd)
+        // 🗺️ TreeMap will store: HD -> list of node values at that HD
         TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+        // Initially: map = { }  // (empty, as no node is processed yet)
+
+        // 🧺 Queue used for BFS traversal (stores Pair<Node, HD>)
         Queue<Pair> q = new LinkedList<>();
+        // Initially: q = [ (1, 0) ]  // Root node 1 is at horizontal distance 0
 
-        q.add(new Pair(root, 0)); // 🌟 root is at horizontal distance 0
 
+        // 🌱 Start from root with horizontal distance = 0
+        q.add(new Pair(root, 0));
+
+        // 🔄 Do level-order traversal (BFS)
         while (!q.isEmpty()) {
-            Pair curr = q.remove();
-            Node node = curr.node;
-            int hd = curr.hd;
+            Pair curr = q.poll();          // 🔄 Remove front element from queue
+            Node node = curr.node;        // Current node
+            int hd = curr.hd;             // Horizontal distance of current node
 
-            // 📥 Add node value to map at its hd
-            map.putIfAbsent(hd, new ArrayList<>());
-            map.get(hd).add(node.data);
+            // 💾 Add node value to the list for that horizontal distance
+            map.putIfAbsent(hd, new ArrayList<>()); // If no list exists for hd, create one
+            map.get(hd).add(node.data);             // Add node to appropriate list
 
-            // ⬅️ Move to left child (hd - 1)
-            if (node.left != null) {
+            // 👈 If node has left child, add it with hd - 1
+            if (node.left != null)
                 q.add(new Pair(node.left, hd - 1));
-            }
 
-            // ➡️ Move to right child (hd + 1)
-            if (node.right != null) {
+            // 👉 If node has right child, add it with hd + 1
+            if (node.right != null)
                 q.add(new Pair(node.right, hd + 1));
-            }
         }
 
-        // 🖨️ Print vertical order traversal
+        // 📦 Now flatten the TreeMap into a single list in order
+        List<Integer> result = new ArrayList<>();
         for (List<Integer> level : map.values()) {
-            for (int val : level) {
-                System.out.print(val + " ");
-            }
-            System.out.println();
+            result.addAll(level);  // Add all elements of each vertical level into result
         }
+
+        return result;  // ✅ Final vertical order list (flattened)
     }
 
     public static void main(String[] args) {
+
         /*
-               1
-             /   \
-            2     3
-           / \   / \
-          4   5 6   7
+         Constructed Binary Tree:
+
+                 1
+               /   \
+              2     3
+             / \   / \
+            4   5 6   7
                    /
                   8
+
+        Horizontal Distances (HD):
+        HD = -2 → 4
+        HD = -1 → 2
+        HD =  0 → 1, 5, 6
+        HD =  1 → 3, 8
+        HD =  2 → 7
+
+        So vertical order output will be:
+        4 2 1 5 6 3 8 7
         */
 
+        // 🌳 Create tree nodes
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
@@ -80,10 +82,39 @@ public class Main {
         root.right.right = new Node(7);
         root.right.right.left = new Node(8);
 
-        System.out.println("Vertical Order Traversal:");
-        verticalOrder(root);
+        // 🚀 Run vertical order traversal
+        List<Integer> output = verticalOrder(root);
+
+        // 🖨️ Print the result
+        System.out.println("Vertical Order Traversal (Flattened):");
+        for (int val : output) {
+            System.out.print(val + " ");  // Expected: 4 2 1 5 6 3 8 7
+        }
+    }
+
+    // 🌿 Node class – Represents each node in the binary tree
+    static class Node {
+        int data;      // Value of node
+        Node left;     // Left child
+        Node right;    // Right child
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    // 📦 Pair class to keep node + horizontal distance (hd) together during traversal
+    static class Pair {
+        Node node;  // The current tree node
+        int hd;     // Horizontal Distance from root
+
+        Pair(Node node, int hd) {
+            this.node = node;
+            this.hd = hd;
+        }
     }
 }
+
 
 /*
 🧪 DRY RUN: Vertical Order Traversal (BFS with horizontal distance)
