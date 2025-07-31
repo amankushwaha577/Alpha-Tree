@@ -24,7 +24,7 @@ public class SerializeDeserializeBinaryTree {
         // 🔁 Start from root
         queue.add(root);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) {  // level order traversal
             Node node = queue.poll(); // 🟢 Remove current node
 
             if (node == null) {
