@@ -66,19 +66,19 @@ public class SerializeDeserializeBinaryTree {
 
         // 🔁 Level-order reconstruction
         while (!queue.isEmpty() && i < values.length) {
-            Node curr = queue.poll(); // Current parent node
+            Node parent = queue.poll(); // Current parent node
 
             // 👈 Create left child if not "null"
             if (!values[i].equals("null")) {
-                curr.left = new Node(Integer.parseInt(values[i]));
-                queue.add(curr.left); // Add left child to queue
+                parent.left = new Node(Integer.parseInt(values[i]));
+                queue.add(parent.left); // Add left child to queue
             }
             i++; // Move to next value
 
             // 👉 Create right child if exists and not "null"
             if (i < values.length && !values[i].equals("null")) {
-                curr.right = new Node(Integer.parseInt(values[i]));
-                queue.add(curr.right); // Add right child to queue
+                parent.right = new Node(Integer.parseInt(values[i]));
+                queue.add(parent.right); // Add right child to queue
             }
             i++; // Move to next value
         }
