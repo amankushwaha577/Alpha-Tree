@@ -171,3 +171,94 @@ Why?
 
 */
 
+/*
+🧪 DRY RUN: Print All Nodes at Distance K from Target Node (K = 2)
+
+🔧 Given Binary Tree:
+
+             3
+           /   \
+          5     1
+         / \   / \
+        6   2 0   8
+           / \
+          7   4
+
+🎯 Target Node = 5
+🔢 K = 2 → We want all nodes at exactly 2 edges away from node 5
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Step 1: Build Parent Map
+
+Traverse tree and store:
+child → parent in a map
+
+parentMap:
+6 → 5
+2 → 5
+5 → 3
+1 → 3
+0 → 1
+8 → 1
+7 → 2
+4 → 2
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Step 2: BFS from Target Node
+
+Initialize:
+queue = [5]
+visited = {5}
+level = 0
+
+             3
+           /   \
+          5     1
+         / \   / \
+        6   2 0   8
+           / \
+          7   4
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔁 Level 0:
+
+queue = [5]
+visited = {5}
+
+➡️ Explore node 5:
+  - left: 6  → added to queue
+  - right: 2 → added to queue
+  - parent: 3 → added to queue
+
+queue = [6, 2, 3]
+visited = {5, 6, 2, 3}
+level = 1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔁 Level 1:
+
+queue = [6, 2, 3]
+visited = {5, 6, 2, 3}
+
+➡️ Explore 6: only parent is 5 → already visited
+➡️ Explore 2:
+   - left: 7 → added
+   - right: 4 → added
+   - parent: 5 → already visited
+
+➡️ Explore 3:
+   - left: 5 → already visited
+   - right: 1 → added
+
+queue = [7, 4, 1]
+visited = {5, 6, 2, 3, 7, 4, 1}
+level = 2 ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Level = K = 2 → Stop here
+
+🎯 Nodes at distance K = 2: [7, 4, 1]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📤 OUTPUT: 7 4 1
+*/
