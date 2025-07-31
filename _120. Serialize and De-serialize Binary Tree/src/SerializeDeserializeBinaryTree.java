@@ -24,13 +24,15 @@ public class SerializeDeserializeBinaryTree {
         // 🔁 Start from root
         queue.add(root);
 
-        while (!queue.isEmpty()) {  // level order traversal
+        while (!queue.isEmpty()) {
             Node node = queue.poll(); // 🟢 Remove current node
 
             if (node == null) {
                 sb.append("null,"); // ⛔ Mark null child explicitly
                 continue;
             }
+
+            // level order traversal ->
 
             // ✅ Append current node’s value
             sb.append(node.val).append(",");
