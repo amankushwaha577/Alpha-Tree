@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Construct_the_Binary_Tree_from_Postorder_and_Inorder_Traversal {
+public class Construct_the_Binary_Tree_from_Postorder_and_Inorder_Traversal  {
     // 🌳 Node structure
     static class Node {
         int data;
