@@ -112,6 +112,7 @@ public class SerializeDeserializeBinaryTree {
         // 🔐 Convert tree to string
         String serialized = serialize(root);
         System.out.println("🔐 Serialized Tree: " + serialized);
+        // Output: "1,2,3,null,null,4,5,null,null,null,null"
 
         // 🔓 Convert string back to tree
         Node deserializedRoot = deserialize(serialized);
@@ -119,6 +120,7 @@ public class SerializeDeserializeBinaryTree {
         // 🔍 Print inorder traversal of reconstructed tree
         System.out.print("📤 Inorder of Deserialized Tree: ");
         printInorder(deserializedRoot); // Should match original tree
+        // Output: 2 1 4 3 5
     }
 }
 
