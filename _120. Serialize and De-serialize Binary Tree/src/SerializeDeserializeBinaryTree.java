@@ -272,3 +272,27 @@ i = 11 (Done)
 */
 
 
+
+/*
+✅ Serialization (Level Order / BFS)
+------------------------------------
+🕒 Time Complexity: O(N)
+- Each node is visited once during level order traversal.
+- N is the number of nodes in the binary tree.
+
+📦 Space Complexity: O(N)
+- Queue holds at most N/2 nodes at the last level in the worst case.
+- The resulting string also takes O(N) space.
+
+
+✅ Deserialization (Level Order / BFS)
+------------------------------------
+🕒 Time Complexity: O(N)
+- We loop through each value once in the array.
+- For each value, we create a node and assign its children.
+
+📦 Space Complexity: O(N)
+- Queue holds nodes to be linked; at most N/2 in worst case.
+- Tree of N nodes is reconstructed using new memory space.
+*/
+
