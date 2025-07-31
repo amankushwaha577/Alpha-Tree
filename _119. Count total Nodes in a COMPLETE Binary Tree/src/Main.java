@@ -123,7 +123,7 @@ countNodes(1) = 1 + 3 + 2 = 6
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📈 Time Complexity:
-→ O(log² N)
+→ O(log² N)  \\ Square of LogN
 Why? For each node we compute left and right height (O(log N)), and we do this up to log N times in a balanced tree.
 
 📦 Space Complexity:
