@@ -59,117 +59,121 @@ public class Construct_a_Binary_Tree_from_Preorder_and_Inorder_Traversal {
         printPostorder(root);  // Expected Output: 9 15 7 20 3
     }
 }
-
 /*
 🧠 DRY RUN: Build Binary Tree from Preorder + Inorder
 
-Goal: Construct the binary tree using:
+Given:
 ➡ Preorder: [3, 9, 20, 15, 7] → (Root, Left, Right)
 ➡ Inorder:  [9, 3, 15, 20, 7] → (Left, Root, Right)
 
-🛠 Data Structures Used:
-🔹 preIndex → tracks current root from preorder array
-🔹 inorderMap → maps value → index for fast lookup
-🔹 Recursion stack → simulates recursive calls for subtree construction
+📦 Supporting Data Structures:
+- `preIndex` = 0 (tracks index in preorder)
+- `inorderMap` = {9:0, 3:1, 15:2, 20:3, 7:4}
+- Recursively build the tree using preIndex and left/right index bounds of inorder
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📌 INITIAL STATE:
+🔹 Step 1: buildSubTree(0, 4)
 
-preIndex = 0
-inorderMap = {
-  9: 0,
-  3: 1,
-  15: 2,
-  20: 3,
-  7: 4
-}
-
-Call: buildTree(preorder, inorder)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔸 Iteration 1: build subtree from inorder[0:4]
-preIndex = 0 → preorder[0] = 3 → Root = 3
-
+preIndex = 0 → preorder[0] = 3 → 🪵 root = 3
 inorderMap[3] = 1
-➡ Left Subtree → inorder[0:0]   [9]
-➡ Right Subtree → inorder[2:4] [15, 20, 7]
 
-Stack: buildSubTree(0, 4)
-Next preIndex = 1
+↙ Left Inorder: inorder[0 to 0] → [9]
+↘ Right Inorder: inorder[2 to 4] → [15, 20, 7]
+
+🌳 Tree so far:
+        3
+
+Data snapshot:
+- preIndex → 1
+- Left buildSubTree(0, 0) is next
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔸 Iteration 2: build subtree from inorder[0:0]
-preIndex = 1 → preorder[1] = 9 → Root = 9
+🔹 Step 2: buildSubTree(0, 0)
 
+preIndex = 1 → preorder[1] = 9 → 🪵 root = 9
 inorderMap[9] = 0
-➡ Left Subtree → invalid (end < start)
-➡ Right Subtree → invalid (end < start)
 
-Stack: buildSubTree(0, 0)
-Next preIndex = 2
+🛑 No left or right children (since start == end)
 
-🟩 Node 9 becomes left of 3
+🌳 Tree so far:
+        3
+       /
+      9
+
+Data snapshot:
+- preIndex → 2
+- Right buildSubTree(2, 4) is next
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔸 Iteration 3: build right subtree from inorder[2:4]
-preIndex = 2 → preorder[2] = 20 → Root = 20
+🔹 Step 3: buildSubTree(2, 4)
 
+preIndex = 2 → preorder[2] = 20 → 🪵 root = 20
 inorderMap[20] = 3
-➡ Left Subtree → inorder[2:2] [15]
-➡ Right Subtree → inorder[4:4] [7]
 
-Stack: buildSubTree(2, 4)
-Next preIndex = 3
+↙ Left Inorder: inorder[2 to 2] → [15]
+↘ Right Inorder: inorder[4 to 4] → [7]
 
-🟩 Node 20 becomes right of 3
+🌳 Tree so far:
+        3
+       / \
+      9   20
+
+Data snapshot:
+- preIndex → 3
+- Left buildSubTree(2, 2) is next
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔸 Iteration 4: build left of 20 from inorder[2:2]
-preIndex = 3 → preorder[3] = 15 → Root = 15
+🔹 Step 4: buildSubTree(2, 2)
 
+preIndex = 3 → preorder[3] = 15 → 🪵 root = 15
 inorderMap[15] = 2
-➡ No left/right subtree (single node)
 
-Stack: buildSubTree(2, 2)
-Next preIndex = 4
+🛑 No left or right children (start == end)
 
-🟩 Node 15 becomes left of 20
+🌳 Tree so far:
+        3
+       / \
+      9   20
+          /
+         15
+
+Data snapshot:
+- preIndex → 4
+- Right buildSubTree(4, 4) is next
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔸 Iteration 5: build right of 20 from inorder[4:4]
-preIndex = 4 → preorder[4] = 7 → Root = 7
+🔹 Step 5: buildSubTree(4, 4)
 
+preIndex = 4 → preorder[4] = 7 → 🪵 root = 7
 inorderMap[7] = 4
-➡ No left/right subtree
 
-Stack: buildSubTree(4, 4)
-Next preIndex = 5
+🛑 No left or right children
 
-🟩 Node 7 becomes right of 20
+🌳 Final Tree:
+        3
+       / \
+      9   20
+          / \
+        15   7
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ FINAL CONSTRUCTED TREE:
-
-         3
-       /   \
-      9     20
-           /  \
-         15    7
+Data snapshot:
+- preIndex → 5 (end of preorder)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📊 FINAL STATES:
+✅ FINAL OUTPUT:
+Reconstructed Binary Tree:
+        3
+       / \
+      9   20
+          / \
+        15   7
 
-preIndex = 5 → All nodes processed
-Stack = empty (all recursive calls returned)
-inorderMap stays same
-
-🕒 Time Complexity: O(N)
-→ Each node is visited once and hashmap gives O(1) index lookup
+📈 Time Complexity: O(N)
+   → Each node visited once, map lookups are O(1)
 
 📦 Space Complexity: O(N)
-→ inorderMap + recursion stack in worst case (skewed tree)
+   → Recursion stack + HashMap
 */
-
 
 
 /*
