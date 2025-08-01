@@ -1,0 +1,34 @@
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔁 Inorder Successor / Predecessor in BST — Comparison
+
+📌 GOAL:
+Find the next (successor) or previous (predecessor) node in **inorder traversal** for a given key.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔸 APPROACH COMPARISON TABLE
+
+| Feature                 | Brute Force                              | Optimal (BST-Based)                     |
+|------------------------|------------------------------------------|-----------------------------------------|
+| 🔧 Method              | Inorder traversal (store in array/list) | Traverse BST while tracking candidate   |
+| 🔍 Logic               | Do full inorder, then find next/prev     | Use BST properties to go left/right     |
+| ⏱ Time Complexity     | O(N)                                     | O(H) → log N (balanced), N (skewed)     |
+| 📦 Space Complexity    | O(N) — stores all nodes                  | O(1) — no extra space                   |
+| ✅ Simplicity          | Easier to implement                      | Slightly more logic, but faster         |
+| 📉 Efficiency          | Slower for large trees                   | Much better for large/deep trees        |
+| 🌳 Traversal Needed    | Full traversal                           | Partial traversal                       |
+| 🔄 Real-time Updates   | Not suitable                             | Good for dynamic BSTs                   |
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 WHEN TO USE:
+- Use **brute force** if tree size is small or for learning purposes.
+- Use **optimal BST traversal** in interviews or large-scale problems.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 Examples:
+
+- Inorder of BST: [5, 10, 15, 17, 20, 30, 35]
+- Successor of 15 → 17
+- Predecessor of 15 → 10
+
+*/
