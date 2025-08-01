@@ -150,7 +150,7 @@ BST inorder: [2, 3, 4, 5, 6, 7, 8]
 🕒 TIME COMPLEXITY:
 - Best case: O(H + K)
 - H = height of BST
-- Worst case: O(N)
+- Worst case: O(N) | But still we are eliminating 0(NLogN) like other sorting algorithm
 
 📦 SPACE COMPLEXITY:
 - O(H) due to recursion stack

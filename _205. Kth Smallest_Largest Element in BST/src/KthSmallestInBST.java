@@ -153,7 +153,7 @@ For BST → [2, 3, 4, 5, 6, 7, 8]
 🕒 TIME COMPLEXITY:
 - Best case: O(H + K)
 - H = height of BST (log N for balanced)
-- Worst case: O(N) if unbalanced
+- Worst case: O(N) if unbalanced  | But still we are eliminating 0(NLogN) like other sorting algorithm
 
 📦 SPACE COMPLEXITY:
 - O(H) due to recursion (or O(H) with stack if iterative)
