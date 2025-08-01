@@ -158,3 +158,44 @@ Resulting Tree:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 */
+
+
+
+ /*
+🧠 INORDER SUCCESSOR in BST (Used in Deletion)
+
+🎯 What is it?
+- The inorder successor of a node is the node with the **smallest value greater than the current node**.
+- It is the **next node in inorder traversal**.
+
+📌 When do we need it?
+- During **deletion** of a node with **two children**, we replace the node's value with its inorder successor.
+
+🔍 How to find it?
+→ If node has a right child:
+   - Go to right subtree
+   - Keep going left until null
+   - That leftmost node is the inorder successor
+
+🧾 Example:
+        8
+      /   \
+     3     10
+    / \      \
+   1   6      14
+      / \     /
+     4   7   13
+
+Delete node 3:
+→ Go to right: 6
+→ Go left: 4 (no more left)
+✅ Inorder Successor = 4
+
+💡 Code Snippet:
+Node succ = node.right;
+while (succ.left != null) {
+    succ = succ.left;
+}
+
+⌛ Time Complexity: O(H) → height of tree
+*/
