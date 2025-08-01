@@ -1,4 +1,4 @@
-public class InsertInBST {
+public class InsertInBST_Recursive {
 
     // 🌳 Node definition
     static class Node {
