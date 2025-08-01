@@ -1,0 +1,37 @@
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+😓 WORST CASE BST EXAMPLE: Skewed Tree
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example Input (insert in sorted order):
+🔢 Insert in order → [1, 2, 3, 4, 5]
+
+🎯 This creates a tree where each node only has a right child.
+
+📉 Tree becomes RIGHT SKEWED like:
+
+      1
+       \
+        2
+         \
+          3
+           \
+            4
+             \
+              5
+
+📌 This is technically a valid BST, but it's completely unbalanced.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ PROBLEM:
+- Searching, inserting, deleting now takes O(N) time.
+- For node 5, we traverse all 4 nodes above it: 1 → 2 → 3 → 4 → 5
+
+✅ Balanced BST would have taken only O(log N) = O(log 5) ≈ 3 steps max.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 HOW TO AVOID:
+- Use **self-balancing trees** like AVL Tree or Red-Black Tree
+- Or use **sorted array → construct BST** using binary divide
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
