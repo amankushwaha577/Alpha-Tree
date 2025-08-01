@@ -1,0 +1,30 @@
+/*
+📏 HEIGHT OF A BALANCED BINARY SEARCH TREE (BST)
+
+🧠 What is Height?
+- Height of a binary tree = Number of edges in the longest path from the root node to a leaf.
+- It determines the **depth** of recursion, or how many levels we may have to search through.
+
+🎯 WHY O(log N) HEIGHT in a BALANCED BST?
+
+👉 In a **Balanced BST**:
+   - Every level is "almost" fully filled before going to the next level.
+   - So the number of nodes **doubles** at each level.
+     ➤ Level 0 → 1 node (2^0)
+     ➤ Level 1 → 2 nodes (2^1)
+     ➤ Level 2 → 4 nodes (2^2)
+     ➤ ...
+     ➤ Level h → 2^h nodes
+
+🔢 Total nodes up to height `h` ≈ 2^0 + 2^1 + 2^2 + ... + 2^h = 2^(h+1) - 1
+⏳ Solving this:
+    N = 2^(h+1) - 1  ⇒  h ≈ log₂(N)
+
+✅ So, the height of a balanced BST with N nodes is:
+   📦 Height = O(log N)
+
+⚠️ NOTE:
+- If the tree becomes **skewed** (like a linked list), then height = O(N), not O(log N)
+- Example of skewed BST: Insert nodes in sorted order like 1 → 2 → 3 → 4
+
+*/
