@@ -62,6 +62,62 @@ public class InorderSuccessor {
     }
 }
 
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 INORDER SUCCESSOR IN BST — SIMPLE EXPLANATION
+
+👉 What is an Inorder Successor?
+- It’s the node that comes **right after a given key** in the inorder traversal of a BST.
+- In other words, it's the **smallest value that is greater than the key**.
+
+🧠 How does BST help?
+- In a Binary Search Tree (BST):
+   - Left < Node < Right
+   - So larger values are always on the **right** side.
+
+📌 SIMPLE STRATEGY:
+We want to find the smallest number that is still **greater** than the key.
+
+1. Start from the root.
+2. If key < root.data:
+   ✅ This node could be the successor (it's greater than key).
+   👉 But maybe there’s a smaller one on the left → So go left.
+3. Else:
+   ❌ This node is too small or equal → Go right to find something larger.
+
+4. Keep track of the **best (smallest so far) valid successor**.
+5. When you reach null, return the best candidate.
+
+✅ This works because we always look for values **just bigger than the key**, and try to improve our answer as we go.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 TIME & SPACE COMPLEXITY
+
+⏱ Time: O(H)
+- H = height of the tree
+- Balanced: O(log N)
+- Skewed: O(N)
+
+📦 Space: O(1)
+- No recursion or stack — just moving through the tree
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌳 Example:
+
+      20
+     /  \
+   10   30
+   / \     \
+  5  15    35
+       \
+       17
+
+Inorder: [5, 10, 15, 17, 20, 30, 35]
+
+If key = 15 → successor = 17 (the number just after 15)
+
+*/
+
 
 /*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -152,25 +208,3 @@ Time: O(H), where H = height of tree
 Space: O(1)
  - No extra space used
 */
-
- /*
-    🔍 LOGIC: Inorder Successor in BST
-
-    👉 Inorder Successor of a node is the node with the **smallest value greater than the given key**.
-    👉 In a BST, all values in the right subtree are greater, and in the left are smaller.
-
-    📌 STRATEGY:
-    - Traverse from root down to the key.
-    - If key < root.data:
-        🔸 Current node could be successor, move left to find smaller successor.
-    - Else:
-        🔸 Move right to search for a larger value.
-
-    🧠 WHY IT WORKS:
-    - We're always moving toward potential successors (larger values),
-      while also keeping track of the *smallest such candidate* we've seen.
-    - The first node where we go left is a valid candidate for successor.
-
-    📦 TIME COMPLEXITY: O(H), H = height of BST
-    📦 SPACE: O(1) — no recursion or extra data structures used
-    */
