@@ -1,0 +1,70 @@
+I was thinking as its using while loop
+it means it is LOT => But its not
+
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📘 Difference Between BST Search vs Level Order Traversal
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 The Code for "Search in a BST" is **NOT** Level Order Traversal.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌳 What It Actually Is: BST Search
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- It's a **Binary Search** based on BST properties:
+    • If target == current.data → ✅ Found
+    • If target < current.data  → 🔽 Go Left
+    • If target > current.data  → 🔼 Go Right
+- Works recursively or iteratively
+- No queue or level-wise traversal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌱 What is Level Order Traversal?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- It's a **Breadth-First Search (BFS)** approach
+- Visits nodes **level by level** from top to bottom
+- Uses a **Queue** to keep track of nodes
+
+Example Code:
+--------------
+public static void levelOrder(Node root) {
+    if (root == null) return;
+
+    Queue<Node> q = new LinkedList<>();
+    q.offer(root);
+
+    while (!q.isEmpty()) {
+        Node curr = q.poll();
+        System.out.print(curr.data + " ");
+
+        if (curr.left != null) q.offer(curr.left);
+        if (curr.right != null) q.offer(curr.right);
+    }
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌳 Example Tree:
+
+            8
+          /   \
+         4     12
+        / \    / \
+       2   6  10  14
+
+Level Order Traversal Output: 8 4 12 2 6 10 14
+BST Search for key = 10: Go right from 8 → left from 12 → ✅ Found
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Summary Table:
+
+| Feature                 | BST Search                     | Level Order Traversal      |
+|------------------------|--------------------------------|----------------------------|
+| Uses Queue             | ❌ No                          | ✅ Yes                      |
+| Goes Level by Level    | ❌ No                          | ✅ Yes                      |
+| Uses BST Property      | ✅ Yes                         | ❌ No                       |
+| Time Complexity (Avg)  | O(log N)                       | O(N)                        |
+| Use-case               | Fast lookup in BST             | Breadth-first visit        |
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Let me know if you need dry run of Level Order Traversal too!
+*/
