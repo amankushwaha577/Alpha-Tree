@@ -18,8 +18,8 @@ public class InorderPredecessor {
         while (root != null) {
             if (key > root.data) {
                 // ✅ Possible predecessor found
-                predecessor = root;
-                root = root.right;
+                predecessor = root; // we found one predecessor
+                root = root.right;  // but we can also find larger predecessor in right.
             } else {
                 // 🔽 Move left to find smaller value
                 root = root.left;
