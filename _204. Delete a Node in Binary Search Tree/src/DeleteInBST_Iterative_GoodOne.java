@@ -1,4 +1,4 @@
- public class DeleteInBST_Iterative {
+ public class DeleteInBST_Iterative_GoodOne {
 
     // 🌳 BST Node structure
     static class Node {
