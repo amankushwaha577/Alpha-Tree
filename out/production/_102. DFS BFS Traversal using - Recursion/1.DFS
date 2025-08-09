@@ -1,0 +1,112 @@
+/*
+==============================
+📘 DFS (Depth-First Search) Traversals
+==============================
+
+💡 DFS explores as far down a branch as possible before backtracking.
+
+There are 3 main types of DFS traversals for binary trees:
+
+----------------------------------------
+1. 1️⃣ PREORDER Traversal (Root → Left → Right)
+----------------------------------------
+
+Step-by-step:
+- Visit the root
+- Traverse the left subtree (recursively)
+- Traverse the right subtree (recursively)
+
+📘 Use Case:
+- Copying the tree
+- Expression tree prefix notation
+
+🌳 Example Tree:
+           🔵1
+          /   \
+       🔵2     🔵3
+      /   \      \
+   🔵4   🔵5     🔵6
+
+🔢 Preorder Output:
+1 2 4 5 3 6
+
+📍 Walkthrough:
+→ Visit 1
+→ Go left → visit 2
+→ Go left → visit 4 (leaf)
+→ Backtrack → visit 5
+→ Backtrack → visit 3 → visit 6
+
+----------------------------------------
+2. 2️⃣ INORDER Traversal (Left → Root → Right)
+----------------------------------------
+
+Step-by-step:
+- Traverse the left subtree
+- Visit the root
+- Traverse the right subtree
+
+📘 Use Case:
+- Sorted output from Binary Search Tree (BST)
+
+🌳 Same Tree:
+           🔵1
+          /   \
+       🔵2     🔵3
+      /   \      \
+   🔵4   🔵5     🔵6
+
+🔢 Inorder Output:
+4 2 5 1 3 6
+
+📍 Walkthrough:
+→ Go left → visit 4
+→ Back to 2
+→ Visit 2
+→ Visit 5
+→ Back to 1
+→ Visit 1
+→ Visit 3 → Visit 6
+
+----------------------------------------
+3. 3️⃣ POSTORDER Traversal (Left → Right → Root)
+----------------------------------------
+
+Step-by-step:
+- Traverse the left subtree
+- Traverse the right subtree
+- Visit the root
+
+📘 Use Case:
+- Deleting or freeing the tree
+- Expression tree postfix notation
+
+🌳 Same Tree:
+           🔵1
+          /   \
+       🔵2     🔵3
+      /   \      \
+   🔵4   🔵5     🔵6
+
+🔢 Postorder Output:
+4 5 2 6 3 1
+
+📍 Walkthrough:
+→ Visit 4
+→ Visit 5
+→ Visit 2
+→ Visit 6
+→ Visit 3
+→ Visit 1
+
+==============================
+📌 Summary Table:
+==============================
+
+| Traversal   | Order           | Output (from tree above) |
+|-------------|------------------|---------------------------|
+| Preorder    | Root L R         | 1 2 4 5 3 6               |
+| Inorder     | L Root R         | 4 2 5 1 3 6               |
+| Postorder   | L R Root         | 4 5 2 6 3 1               |
+
+*/

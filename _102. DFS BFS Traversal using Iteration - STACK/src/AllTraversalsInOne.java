@@ -83,6 +83,33 @@ public class AllTraversalsInOne {
 }
 
 /*
+📦 Algorithm Steps:
+1. Create three empty lists: preorder, inorder, postorder.
+2. Create a stack of Pair<Node, state>:
+   - state = 1 → Preorder phase
+   - state = 2 → Inorder phase
+   - state = 3 → Postorder phase
+3. Push (root, 1) into the stack.
+4. While stack is not empty:
+   a. Pop the top pair (node, state).
+   b. If state == 1:
+        - Add node.data to preorder list.
+        - Increment state to 2 and push back into stack.
+        - If node.left exists → push (node.left, 1) to stack.
+   c. Else if state == 2:
+        - Add node.data to inorder list.
+        - Increment state to 3 and push back into stack.
+        - If node.right exists → push (node.right, 1) to stack.
+   d. Else (state == 3):
+        - Add node.data to postorder list.
+5. After loop ends, print all three traversal lists.
+
+📌 Time Complexity: O(n) — each node is processed exactly 3 times (once for each phase).
+📌 Space Complexity: O(n) — stack can hold up to n nodes in worst case (skewed tree).
+*/
+
+
+/*
 🧠 LOGIC: Preorder, Inorder & Postorder in One Traversal (Single Stack)
 
 🔢 We use a `Pair` of (Node, State) to track progress through each node:
