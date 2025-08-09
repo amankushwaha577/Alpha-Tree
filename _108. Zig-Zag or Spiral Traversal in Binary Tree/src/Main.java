@@ -12,16 +12,19 @@ public class Main {
         }
     }
 
-    /**
-     * ZigZag (Spiral) Traversal of a Binary Tree.
-     * This function prints nodes level-by-level but alternates
-     * the direction on each level:
-     *  - First level: left to right
-     *  - Second level: right to left
-     *  - Third level: left to right
-     *  and so on...
-     */
-    public static List<List<Integer>> zigZagTraversal(Node root) {
+        /*
+      🔁 Strategy: Zig-Zag (Spiral) Level Order Traversal
+      1. Use a queue for standard level-order traversal.
+      2. Keep a boolean flag `leftToRight` to track the printing direction.
+      3. For each level:
+         - Process all nodes currently in the queue (this is one level).
+         - If `leftToRight` is true → append node values at the end of the list.
+         - If false → insert node values at the beginning (reverses order).
+         - Add left and right children to the queue for the next level.
+      4. Toggle `leftToRight` after each level to switch direction.
+      5. Continue until queue is empty (all levels processed).
+      */
+        public static List<List<Integer>> zigZagTraversal(Node root) {
         List<List<Integer>> result = new ArrayList<>();
 
         // If tree is empty, return empty result
@@ -127,3 +130,41 @@ Level 3 (L→R): [4, 5, 6]
 Final Output: [[1], [3, 2], [4, 5, 6]]
 ------------------------------------------------------------
 */
+
+
+ /*
+    🧪 Dry Run Example:
+    Tree:
+             1
+           /   \
+          2     3
+         / \   /
+        4   5 6
+
+    Initial:
+    Queue = [1], leftToRight = true, result = []
+
+    Level 0:
+    - Process: 1 → add to level list → [1]
+    - Enqueue children: 2, 3
+    - result = [[1]]
+    - Toggle direction → leftToRight = false
+
+    Level 1:
+    - Process: 2 → insert at start → [2]
+      Process: 3 → insert at start → [3, 2]
+    - Enqueue children: 4, 5, 6
+    - result = [[1], [3, 2]]
+    - Toggle direction → leftToRight = true
+
+    Level 2:
+    - Process: 4 → add at end → [4]
+      Process: 5 → add at end → [4, 5]
+      Process: 6 → add at end → [4, 5, 6]
+    - No more children to enqueue
+    - result = [[1], [3, 2], [4, 5, 6]]
+    - Queue empty → stop
+
+    ✅ Final Output:
+    [[1], [3, 2], [4, 5, 6]]
+    */
